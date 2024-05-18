@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% comment %} Главная страница с отображением детальной информаци о товаре {% endcomment %}
+
+{% block title %}
+  zloy detail
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="product-grid">
+    {% include "product/includes/detail_cart.html" %}
+  </div>
+</main>
+{% endblock %}

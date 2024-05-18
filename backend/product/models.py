@@ -9,19 +9,34 @@ class Product(models.Model):
         name (str): Название продукта.
         image (str): Изображение продукта.
         description (str): Описание продукта.
-        price (Decimal): Цена продукта.
+        current_price (Decimal): Текущая цена.
+        old_price (Decimal): Старая цена.
         sizes (str): Размеры продукта.
         colors (str): Цвета продукта.
         category (str): Категория продукта
             (Футболка, брюки, шорты и т.д.).
     """
 
-    CATEGORIES = [
+    CATEGORIES = (
         ('T-shirts', 'Футболки'),
         ('Trousers', 'Брюки'),
         ('Shorts', 'Шорты'),
         ('Hoodie', 'Худи'),
-    ]
+    )
+
+    COLORS = (
+        ('Gray', 'Серый'),
+        ('Black', 'Чёрный'),
+        ('White', 'Белый'),
+        ('Red', 'Красный'),
+    )
+
+    SIZES = (
+        ('S', 'S, EUR: 38, RUS 44'),
+        ('M', 'M, EUR: 40, RUS 46'),
+        ('L', 'L, EUR: 42, RUS 48'),
+        ('XL', 'XL, EUR: 44, RUS 50'),
+    )
 
     name = models.CharField(
         max_length=100,
@@ -38,19 +53,27 @@ class Product(models.Model):
         verbose_name='Описание',
         help_text='Описание продукта',
     )
-    price = models.DecimalField(
+    current_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        verbose_name='Цена',
-        help_text='Цена продукта',
+        verbose_name='Текущая цена',
+        help_text='Текущая цена продукта',
+    )
+    old_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name='Старая цена',
+        help_text='Старая цена продукта',
     )
     sizes = models.CharField(
         max_length=50,
+        choices=SIZES,
         verbose_name='Размеры',
         help_text='Размеры продукта',
     )
     colors = models.CharField(
         max_length=50,
+        choices=COLORS,
         verbose_name='Цвета',
         help_text='Цвета продукта',
     )

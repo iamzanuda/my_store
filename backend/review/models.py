@@ -39,7 +39,7 @@ class Review(models.Model):
         default=10,
         validators=(
             MinValueValidator(1),
-            MaxValueValidator(10),
+            MaxValueValidator(5),
         ),
         verbose_name='Оценка',
         help_text='Оценка, которую пользователь поставил продукту',
