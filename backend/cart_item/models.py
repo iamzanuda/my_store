@@ -1,6 +1,7 @@
 from django.db import models
 
 from product.models import Product
+from users.models import CustomUser
 
 
 class CartItem(models.Model):
@@ -8,10 +9,19 @@ class CartItem(models.Model):
     Модель, описывающая товар в корзине покупателя.
 
     Attributes:
+        user (ForeignKey): Пользователь, к которому относится продукт.
         product (ForeignKey): Продукт, добавленный в корзину.
         quantity (IntegerField): Количество данного продукта в корзине.
     """
 
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        blank=False,
+        related_name='cart_items',
+        verbose_name='Пользователь',
+        help_text='Пользователь, к которому относится продукт',
+    )
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
