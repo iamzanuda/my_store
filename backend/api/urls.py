@@ -5,7 +5,7 @@ from .views import ProductViewSet
 
 router = DefaultRouter()
 
-router.register('product', ProductViewSet, basename='product')
+router.register(r'product', ProductViewSet, basename='product')
 # router.register('review', ReviewViewSet, basename='review')
 
 

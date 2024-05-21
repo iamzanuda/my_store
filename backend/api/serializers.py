@@ -8,6 +8,23 @@ from favorites.models import Favorite
 from order.models import Order
 
 
+class ProductInCartSerializer(serializers.ModelSerializer):
+    """
+
+    """
+
+    class Meta:
+        model = Product
+        fields = (
+                  'name',
+                  'image',
+                  'current_price',
+                  'sizes',
+                  'colors',
+                  'category',
+                  )
+
+
 class CartItemSerializer(serializers.ModelSerializer):
     """
 
@@ -16,6 +33,7 @@ class CartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
         fields = (
+                  'user',
                   'product',
                   'quantity',
                   )
