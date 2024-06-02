@@ -1,6 +1,54 @@
 from django.db import models
 
 
+class Size(models.Model):
+    """
+    Модель, описывающая размер продукта.
+    """
+
+    SIZE_CHOICES = (
+        ('S, EUR: 38, RUS 44', 'S, EUR: 38, RUS 44'),
+        ('M, EUR: 40, RUS 46', 'M, EUR: 40, RUS 46'),
+        ('L, EUR: 42, RUS 48', 'L, EUR: 42, RUS 48'),
+        ('XL, EUR: 44, RUS 50', 'XL, EUR: 44, RUS 50'),
+    )
+
+    size = models.CharField(
+        max_length=20,
+        choices=SIZE_CHOICES,
+        verbose_name='Размер',
+        help_text='Размер продукта',
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.size
+
+
+class Color(models.Model):
+    """
+    Модель, описывающая цвет продукта.
+    """
+
+    COLOR_CHOICES = (
+        ('Серый', 'Серый'),
+        ('Чёрный', 'Чёрный'),
+        ('Белый', 'Белый'),
+        ('Красный', 'Красный'),
+    )
+
+    color = models.CharField(
+        max_length=20,
+        choices=COLOR_CHOICES,
+        verbose_name='Цвет',
+        help_text='Цвет продукта',
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.color
+
+
 class Product(models.Model):
     """
     Модель, описывающая продукт.
@@ -11,8 +59,8 @@ class Product(models.Model):
         description (str): Описание продукта.
         current_price (Decimal): Текущая цена.
         old_price (Decimal): Старая цена.
-        sizes (str): Размеры продукта.
-        colors (str): Цвета продукта.
+        sizes (ManyToManyField): Размеры продукта.
+        colors (ManyToManyField): Цвета продукта.
         category (str): Категория продукта
             (Футболка, брюки, шорты и т.д.).
     """
@@ -22,20 +70,6 @@ class Product(models.Model):
         ('Trousers', 'Брюки'),
         ('Shorts', 'Шорты'),
         ('Hoodie', 'Худи'),
-    )
-
-    COLORS = (
-        ('Gray', 'Серый'),
-        ('Black', 'Чёрный'),
-        ('White', 'Белый'),
-        ('Red', 'Красный'),
-    )
-
-    SIZES = (
-        ('S', 'S, EUR: 38, RUS 44'),
-        ('M', 'M, EUR: 40, RUS 46'),
-        ('L', 'L, EUR: 42, RUS 48'),
-        ('XL', 'XL, EUR: 44, RUS 50'),
     )
 
     name = models.CharField(
@@ -65,15 +99,13 @@ class Product(models.Model):
         verbose_name='Старая цена',
         help_text='Старая цена продукта',
     )
-    sizes = models.CharField(
-        max_length=50,
-        choices=SIZES,
+    sizes = models.ManyToManyField(
+        Size,
         verbose_name='Размеры',
         help_text='Размеры продукта',
     )
-    colors = models.CharField(
-        max_length=50,
-        choices=COLORS,
+    colors = models.ManyToManyField(
+        Color,
         verbose_name='Цвета',
         help_text='Цвета продукта',
     )
@@ -87,11 +119,6 @@ class Product(models.Model):
     class Meta:
         """
         Meta класс для определения метаданных модели.
-
-        Если вам нужно изменить имя или язык таблицы
-        в административной панели, раскомментируйте строки:
-        -> verbose_name = ''
-        -> verbose_name_plural = ''
         """
 
         # verbose_name = 'Продукт'
@@ -101,5 +128,4 @@ class Product(models.Model):
         """
         Возвращает название продукта.
         """
-
         return self.name
