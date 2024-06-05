@@ -1,0 +1,6 @@
+Подготовил структуру для фронтенда на Node.js.
+
+
+
+# Команда для создания документации Swagger
+python manage.py generateschema > schema.yaml

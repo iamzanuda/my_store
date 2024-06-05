@@ -1,4 +1,4 @@
-from datetime import timedelta
+# from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'drf_yasg',  # Необходимо для swagger
 
     # Приложения
     'api.apps.ApiConfig',
@@ -33,7 +34,7 @@ INSTALLED_APPS = [
 
     # Django REST
     'rest_framework',
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     'djoser',
 ]
 
@@ -139,8 +140,8 @@ REST_FRAMEWORK = {
     # ]
 }
 
-SIMPLE_JWT = {
-    # Устанавливаем срок жизни токена
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1000),
-    'AUTH_HEADER_TYPES': ('Bearer',),
-}
+# SIMPLE_JWT = {
+#     # Устанавливаем срок жизни токена
+#     'ACCESS_TOKEN_LIFETIME': timedelta(days=1000),
+#     'AUTH_HEADER_TYPES': ('Bearer',),
+# }
