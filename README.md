@@ -5,4 +5,4 @@ Stack:
 - Django
 - Djoser
 - Simple JWT
-- 
+- Node.js
