@@ -17,6 +17,6 @@ class ProductPagination(PageNumberPagination):
         max_page_size (int): The maximum number of items allowed per page.
     """
 
-    page_size = 10  # Default page size
+    page_size = 10
     page_size_query_param = 'page_size'
     max_page_size = 50

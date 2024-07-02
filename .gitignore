@@ -133,4 +133,15 @@ dmypy.json
 
 .vscode
 
+# Media files
 media/
+
+# Node.js stuff:
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# # Frontend build files:
+# frontend/build/
+# frontend/node_modules/

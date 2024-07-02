@@ -52,7 +52,7 @@ class ProductAdmin(admin.ModelAdmin):
     Examples:
         В административной панели вы можете:
             - Просматривать список продуктов с полями 'name',
-              'current_price' и 'category'.
+                'current_price' и 'category'.
             - Фильтровать продукты по 'category', 'colors' и 'sizes'.
             - Искать продукты по 'name' и 'description'.
             - Управлять связями ManyToMany для полей 'sizes' и 'colors'.

@@ -44,6 +44,8 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         Add or remove a product from a user's favorite list or cart.
         """
 
+        # We check the request type: if it is POST,
+        # then we initialize the serializer and check its validity.
         if request.method == 'POST':
             serializer = ProductInCartSerializer(
                 product,
@@ -52,35 +54,63 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
             )
             serializer.is_valid(raise_exception=True)
 
+            # If the product does not exist, we return an error.
             if product is None:
                 return Response(
                     {'errors': 'Product does not exist.'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
+            # If the product is not in the user's favorites list or cart, 
+            # we add it and return a successful response with code 201.
             if not model.objects.filter(
                 user=request.user,
                 product=product
-            ).exists():
+                ).exists():
 
-                model.objects.create(user=request.user, product=product)
-                return Response(serializer.data,
-                                status=status.HTTP_201_CREATED)
+                model.objects.create(
+                    user=request.user, 
+                    product=product
+                )
+                return Response(
+                    serializer.data,
+                    status=status.HTTP_201_CREATED
+                )
 
-            return Response({'errors': 'Already in the list.'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            # If the product is already in the list, 
+            # we return an error with code 400.
+            return Response(
+                {'errors': 'Already in the list.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
 
+        # We check the request type: if it is DELETE,
+        # then we check if the product is in the user’s
+        # favorites list or cart.
         if request.method == 'DELETE':
-            if not model.objects.filter(user=request.user,
-                                        product=product).exists():
-                return Response({'errors': 'Product does not exist.'},
-                                status=status.HTTP_400_BAD_REQUEST)
+            # If the product is not found, we return an error.
+            if not model.objects.filter(
+                user=request.user,
+                product=product
+                ).exists():
 
-            get_object_or_404(model,
-                              user=request.user,
-                              product=product).delete()
-            return Response({'detail': message},
-                            status=status.HTTP_204_NO_CONTENT)
+                return Response(
+                    {'errors': 'Product does not exist.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # If the product is found, we delete it and return a 
+            # response with a message about successful deletion with code 204.
+            get_object_or_404(
+                model,
+                user=request.user,
+                product=product
+                ).delete()
+
+            return Response(
+                {'detail': message},
+                status=status.HTTP_204_NO_CONTENT
+            )
 
     @action(detail=True,
             methods=('POST', 'DELETE'),
@@ -113,7 +143,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ReviewViewingViewSet(viewsets.ModelViewSet):
     """
-    Просмотр коментариев на странице конкретного продукта.
+    View all comments on a specific product page.
     """
 
     queryset = Review.objects.all()

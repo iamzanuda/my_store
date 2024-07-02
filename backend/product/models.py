@@ -3,7 +3,7 @@ from django.db import models
 
 class Size(models.Model):
     """
-    Модель, описывающая размер продукта.
+    Model describing the size of a product.
     """
 
     SIZE_CHOICES = (
@@ -22,12 +22,16 @@ class Size(models.Model):
     )
 
     def __str__(self):
+        """
+        Returns the product size.
+        """
+
         return self.size
 
 
 class Color(models.Model):
     """
-    Модель, описывающая цвет продукта.
+    Model describing the color of a product.
     """
 
     COLOR_CHOICES = (
@@ -46,23 +50,27 @@ class Color(models.Model):
     )
 
     def __str__(self):
+        """
+        Returns the product color.
+        """
+
         return self.color
 
 
 class Product(models.Model):
     """
-    Модель, описывающая продукт.
+    Model describing the product.
 
     Attributes:
-        name (str): Название продукта.
-        image (str): Изображение продукта.
-        description (str): Описание продукта.
-        current_price (Decimal): Текущая цена.
-        old_price (Decimal): Старая цена.
-        sizes (ManyToManyField): Размеры продукта.
-        colors (ManyToManyField): Цвета продукта.
-        category (str): Категория продукта
-            (Футболка, брюки, шорты и т.д.).
+        name (str): Product name.
+        image (str): Product image.
+        description (str): Product description.
+        current_price (Decimal): Current price.
+        old_price (Decimal): Old price.
+        sizes (ManyToManyField): Product sizes.
+        colors (ManyToManyField): Product colors.
+        category (str): Product category
+            (T-shirt, trousers, shorts, etc.)
     """
 
     CATEGORIES = (
@@ -118,7 +126,7 @@ class Product(models.Model):
 
     class Meta:
         """
-        Meta класс для определения метаданных модели.
+        Meta class for defining model metadata.
         """
 
         # verbose_name = 'Продукт'
@@ -126,6 +134,7 @@ class Product(models.Model):
 
     def __str__(self):
         """
-        Возвращает название продукта.
+        Returns the product name.
         """
+
         return self.name
