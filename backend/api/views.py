@@ -114,9 +114,10 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
                 status=status.HTTP_204_NO_CONTENT
             )
 
-    @action(detail=True,
-            methods=('POST', 'DELETE'),
-            permission_classes=(IsAuthenticated,))
+    @action(
+        detail=True,
+        methods=('POST', 'DELETE'),
+        permission_classes=(IsAuthenticated,))
     def favorite(self, request, pk):
         """
         Add or remove a product from the favorite list.
@@ -125,12 +126,17 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         """
 
         product = get_object_or_404(Product, id=pk)
-        return self.add_or_remove(request, Favorite, product,
-                                  'Product removed from favorites.')
+        return self.add_or_remove(
+            request,
+            Favorite,
+            product,
+            'Product removed from favorites.'
+        )
 
-    @action(detail=True,
-            methods=('POST', 'DELETE'),
-            permission_classes=(IsAuthenticated,))
+    @action(
+        detail=True,
+        methods=('POST', 'DELETE'),
+        permission_classes=(IsAuthenticated,))
     def cart(self, request, pk):
         """
         Add or remove a product from the shopping cart.
@@ -139,8 +145,12 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         """
 
         product = get_object_or_404(Product, id=pk)
-        return self.add_or_remove(request, CartItem, product,
-                                  'Product removed from the cart.')
+        return self.add_or_remove(
+            request,
+            CartItem,
+            product,
+            'Product removed from the cart.'
+        )
 
 
 class ReviewViewingViewSet(viewsets.ModelViewSet):

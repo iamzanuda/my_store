@@ -1,3 +1,4 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from product.models import Product
@@ -29,8 +30,12 @@ class CartItem(models.Model):
         verbose_name='Продукт',
         help_text='Продукт, добавленный в корзину',
     )
-    quantity = models.IntegerField(
+    quantity = models.PositiveIntegerField(
         default=1,
+        validators=(
+            MinValueValidator(1),
+            MaxValueValidator(100),
+        ),
         verbose_name='Количество',
         help_text='Количество данного продукта в корзине',
     )
