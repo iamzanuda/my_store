@@ -6,12 +6,12 @@ from users.models import CustomUser
 
 class CartItem(models.Model):
     """
-    Модель, описывающая товар в корзине покупателя.
+    Model describing an item in a customer's shopping cart.
 
     Attributes:
-        user (ForeignKey): Пользователь, к которому относится продукт.
-        product (ForeignKey): Продукт, добавленный в корзину.
-        quantity (IntegerField): Количество данного продукта в корзине.
+        user (ForeignKey): The user to whom the product belongs.
+        product (ForeignKey): The product added to the cart.
+        quantity (IntegerField): The quantity of the product in the cart.
     """
 
     user = models.ForeignKey(
@@ -37,10 +37,10 @@ class CartItem(models.Model):
 
     class Meta:
         """
-        Meta класс для определения метаданных модели.
+        Meta class to define model metadata.
 
-        Если вам нужно изменить имя или язык таблицы
-        в административной панели, раскомментируйте строки:
+        If you need to change the name or language of the table
+        in the admin panel, uncomment the lines:
         -> verbose_name = ''
         -> verbose_name_plural = ''
         """
@@ -50,7 +50,7 @@ class CartItem(models.Model):
 
     def __str__(self):
         """
-        Возвращает название продукта и количество в корзине.
+        Returns the product name and quantity in the cart.
         """
 
         return f'{self.product.name} - {self.quantity}'

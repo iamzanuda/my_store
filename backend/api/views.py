@@ -12,7 +12,8 @@ from cart_item.models import CartItem
 from .pagination import ProductPagination
 
 from .serializers import (ProductCardSerializer, ProductSerializer,
-                          ReviewViewingSerializer, ProductInCartSerializer)
+                          ReviewViewingSerializer, ProductInCartSerializer,
+                          CartItemSerializer, FavoriteSerializer)
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -149,3 +150,21 @@ class ReviewViewingViewSet(viewsets.ModelViewSet):
 
     queryset = Review.objects.all()
     serializer_class = ReviewViewingSerializer
+
+
+class CartItemViewSet(viewsets.ModelViewSet):
+    """
+    View all items in cart.
+    """
+
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+
+
+class FavoriteViewSet(viewsets.ModelViewSet):
+    """
+    View all items in favorites.
+    """
+
+    queryset = Favorite.objects.all()
+    serializer_class = FavoriteSerializer

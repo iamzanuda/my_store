@@ -112,6 +112,8 @@ class ProductCardSerializer(serializers.ModelSerializer):
     """
 
     reviews = ReviewViewingSerializer(read_only=True, many=True)
+    # sizes = serializers.StringRelatedField(read_only=True)
+    # colors = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Product

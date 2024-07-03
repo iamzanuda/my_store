@@ -36,7 +36,7 @@ class Review(models.Model):
         help_text='Текст отзыва о продукте',
     )
     rating = models.PositiveIntegerField(
-        default=10,
+        default=5,
         validators=(
             MinValueValidator(1),
             MaxValueValidator(5),

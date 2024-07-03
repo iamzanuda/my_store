@@ -126,7 +126,10 @@ class Product(models.Model):
 
     class Meta:
         """
-        Meta class for defining model metadata.
+        If you need to change the name or language of the table
+        in the admin panel, uncomment the lines:
+        -> verbose_name = ''
+        -> verbose_name_plural = ''
         """
 
         # verbose_name = 'Продукт'
