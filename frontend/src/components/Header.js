@@ -1,22 +1,19 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton } from '@mui/material';
-import LanguageIcon from '@mui/icons-material/Language';
+import styled from 'styled-components';
 
-function Header() {
-  return (
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Clothing Store
-        </Typography>
-        <Button color="inherit">Login</Button>
-        <Button color="inherit">Register</Button>
-        <IconButton color="inherit">
-          <LanguageIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  );
-}
+const HeaderContainer = styled.header`
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+`;
+
+const Header = () => (
+  <HeaderContainer>
+    <h1>Clothing Store</h1>
+    <nav>
+      <a href="/login">Login</a> | <a href="/register">Register</a>
+    </nav>
+  </HeaderContainer>
+);
 
 export default Header;

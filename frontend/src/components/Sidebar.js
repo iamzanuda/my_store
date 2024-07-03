@@ -1,21 +1,22 @@
 import React from 'react';
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
+import styled from 'styled-components';
 
-function Sidebar() {
-  return (
-    <div>
-      <Typography variant="h6">Categories</Typography>
-      <List>
-        <ListItem button>
-          <ListItemText primary="Category 1" />
-        </ListItem>
-        <ListItem button>
-          <ListItemText primary="Category 2" />
-        </ListItem>
-        {/* Add more categories as needed */}
-      </List>
-    </div>
-  );
-}
+const SidebarContainer = styled.aside`
+  background-color: #f7f7f7;
+  padding: 1rem;
+  width: 200px;
+  position: fixed;
+  height: 100%;
+`;
+
+const Sidebar = () => (
+  <SidebarContainer>
+    <h2>Categories</h2>
+    <ul>
+      <li><a href="/category/men">Men</a></li>
+      <li><a href="/category/women">Women</a></li>
+    </ul>
+  </SidebarContainer>
+);
 
 export default Sidebar;

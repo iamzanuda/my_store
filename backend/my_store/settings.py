@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     # Django REST
     'rest_framework',
+    'corsheaders',
     # 'rest_framework.authtoken',
     'djoser',
 ]
@@ -44,6 +45,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # CORS
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -51,7 +53,26 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+# Значение True, установленное для этой константы,
+# разрешит обрабатывать запросы, приходящие с любого хоста,
+# игнорируя политику Same Origin. Если установить False или
+# просто удалить эту константу из конфигурации,
+# то будут разрешены запросы только с текущего хоста.
+CORS_ORIGIN_ALLOW_ALL = True
+
+# Значением этого ключа должно быть регулярное выражение — шаблон 
+# тех адресов вашего проекта, к которым можно обращаться с других доменов.
+CORS_URLS_REGEX = r'^/api/.*$'
+
+# Адрес, с которого разрешены запросы.
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:3000',
+# ]
+
+
 ROOT_URLCONF = 'my_store.urls'
+
 
 TEMPLATES = [
     {

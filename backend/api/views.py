@@ -88,6 +88,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         # then we check if the product is in the user’s
         # favorites list or cart.
         if request.method == 'DELETE':
+
             # If the product is not found, we return an error.
             if not model.objects.filter(
                 user=request.user,
