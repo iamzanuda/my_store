@@ -8,37 +8,7 @@ from favorites.models import Favorite
 from order.models import Order
 
 
-class ProductInCartSerializer(serializers.ModelSerializer):
-    """
-
-    """
-
-    class Meta:
-        model = Product
-        fields = (
-            'name',
-            'image',
-            'current_price',
-            'sizes',
-            'colors',
-            'category',
-            )
-
-
-class CartItemSerializer(serializers.ModelSerializer):
-    """
-
-    """
-
-    class Meta:
-        model = CartItem
-        fields = (
-            'user',
-            'product',
-            'quantity',
-            )
-
-
+#----------------------------------------------------
 class FavoriteSerializer(serializers.ModelSerializer):
     """
 
@@ -49,7 +19,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         fields = (
             'user',
             'product',
-            )
+        )
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -64,7 +34,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'user',
             'status',
             'created_at',
-            )
+        )
 
 
 # Product------------------------------------------------------------------------
@@ -80,7 +50,7 @@ class ProductSerializer(serializers.ModelSerializer):
             'name',
             'image',
             'current_price',
-            )
+        )
 
 
 # Review-Product-----------------------------------------------------------------
@@ -105,7 +75,7 @@ class ReviewViewingSerializer(serializers.ModelSerializer):
             'text',
             'rating',
             'created_at',
-            )
+        )
 
 
 class SizeSerializer(serializers.ModelSerializer):
@@ -120,7 +90,7 @@ class SizeSerializer(serializers.ModelSerializer):
         model = Size
         fields = (
             'size',
-            )
+        )
 
 
 class ColorSerializer(serializers.ModelSerializer):
@@ -135,7 +105,7 @@ class ColorSerializer(serializers.ModelSerializer):
         model = Color
         fields = (
             'color',
-            )
+        )
 
 
 class ProductCardSerializer(serializers.ModelSerializer):
@@ -168,7 +138,71 @@ class ProductCardSerializer(serializers.ModelSerializer):
             'colors',
             'category',
             'reviews',
-            )
+        )
+
+
+#-------------------------CART-----------------------------
+class ProductInCartSerializer(serializers.ModelSerializer):
+    """
+    Serializer for representing the product details within the cart.
+
+    Attributes:
+        name (str): The name of the product.
+        image (str): The image URL of the product.
+        current_price (Decimal): The current price of the product.
+        sizes (SizeSerializer): The sizes available for the product.
+        colors (ColorSerializer): The colors available for the product.
+        category (str): The category of the product.
+    """
+
+    sizes = SizeSerializer(read_only=True, many=True)
+    colors = ColorSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Product
+        fields = (
+            'name',
+            'category',
+            'image',
+            'current_price',
+            'sizes',
+            'colors',
+        )
+        read_only_fields = (
+            'name',
+            'category',
+            'image',
+            'current_price',
+            'sizes',
+            'colors',
+        )
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+    """
+    Serializer for representing the cart item details.
+
+    Attributes:
+        user (ForeignKey): The user who added the product to the cart.
+        product (ProductInCartSerializer): The product added to the cart.
+        quantity (int): The quantity of the product in the cart.
+    """
+
+    user = serializers.StringRelatedField(read_only=True)
+    product = ProductInCartSerializer(read_only=True)
+
+    class Meta:
+        model = CartItem
+        fields = (
+            'user',
+            'product',
+            'quantity',
+        )
+        read_only_fields = (
+            'user',
+            'product',
+            'quantity',
+        )
 
 
 # User----------------------------------------------------------------------------
