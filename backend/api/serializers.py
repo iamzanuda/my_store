@@ -8,20 +8,7 @@ from favorites.models import Favorite
 from order.models import Order
 
 
-#----------------------------------------------------
-class FavoriteSerializer(serializers.ModelSerializer):
-    """
-
-    """
-
-    class Meta:
-        model = Favorite
-        fields = (
-            'user',
-            'product',
-        )
-
-
+#---------------ORDER------------------------------------
 class OrderSerializer(serializers.ModelSerializer):
     """
 
@@ -141,7 +128,33 @@ class ProductCardSerializer(serializers.ModelSerializer):
         )
 
 
-#-------------------------CART-----------------------------
+#----FAVORITE--------------------------------------------------
+class FavoriteSerializer(serializers.ModelSerializer):
+    """
+    Serializer for representing a user's favorite products.
+
+    Attributes:
+        user (str): The user who marked the product as favorite. 
+            This field is read-only and displays the user's name 
+            or identifier.
+        product (ProductSerializer): The detailed information of the product 
+            marked as favorite. 
+            This field is read-only and uses the ProductSerializer to serialize 
+            the product details.
+    """
+
+    user = serializers.StringRelatedField(read_only=True)
+    product = ProductSerializer(read_only=True)
+
+    class Meta:
+        model = Favorite
+        fields = (
+            'user',
+            'product',
+        )
+
+
+#----CART--------------------------------------------------
 class ProductInCartSerializer(serializers.ModelSerializer):
     """
     Serializer for representing the product details within the cart.
@@ -205,7 +218,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         )
 
 
-# User----------------------------------------------------------------------------
+# ----USER----------------------------------------------
 class CustomUserSerializer(serializers.ModelSerializer):
     """
 
