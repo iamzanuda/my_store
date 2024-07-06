@@ -18,7 +18,7 @@ This project is a simple e-commerce application built with Django. It includes f
 - HTML/CSS for templating
 - JavaScript (optional for frontend interactivity)
 
-## Getting Started
+# Getting Started
 
 ## Prerequisites
 
