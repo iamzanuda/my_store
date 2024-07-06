@@ -1,4 +1,4 @@
-# Django E-commerce Project
+# Django my_store Project
 
 This project is a simple e-commerce application built with Django. It includes functionality for managing products, users, shopping carts, and favorites.
 
@@ -30,8 +30,8 @@ This project is a simple e-commerce application built with Django. It includes f
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/imzanuda/zloy_wear.git
-   cd django-ecommerce
+   git clone https://github.com/imzanuda/my_store.git
+   cd my_store
 
 2. Create a virtual environment and activate it:
 
