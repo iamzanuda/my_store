@@ -30,7 +30,7 @@ This project is a simple e-commerce application built with Django. It includes f
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/django-ecommerce.git
+   git clone https://github.com/imzanuda/zloy_wear.git
    cd django-ecommerce
 
 2. Create a virtual environment and activate it:
