@@ -18,19 +18,19 @@ This project is a simple e-commerce application built with Django. It includes f
 - HTML/CSS for templating
 - JavaScript (optional for frontend interactivity)
 
-## Getting Started
+# Getting Started
 
-### Prerequisites
+## Prerequisites
 
 - Python 3.8+
 - pip (Python package installer)
 
-### Installation
+## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/django-ecommerce.git
+   git clone https://github.com/imzanuda/zloy_wear.git
    cd django-ecommerce
 
 2. Create a virtual environment and activate it:
@@ -61,7 +61,7 @@ This project is a simple e-commerce application built with Django. It includes f
 
 7. Open your browser and go to http://127.0.0.1:8000 to see the application.
 
-### Example Usage
+## Example Usage
 To add a product to the cart:
 
 Send a POST request to /api/cart/ with the following JSON body:
@@ -74,13 +74,13 @@ To view the cart items, send a GET request to /api/cart/.
     ```bash
     python manage.py test -->
 
-# Contributing
+## Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-# License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-# Contact
+## Contact
 If you have any questions or suggestions, please open an issue or contact me at [yrslvb@gmail.com].
 
 
