@@ -5,7 +5,7 @@ from product.models import Product
 from users.models import CustomUser
 
 
-class CartItem(models.Model):
+class Cart(models.Model):
     """
     Model describing an item in a customer's shopping cart.
 

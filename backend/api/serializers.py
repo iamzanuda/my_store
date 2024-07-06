@@ -3,7 +3,7 @@ from rest_framework import serializers
 from review.models import Review
 from product.models import Product, Color, Size
 from users.models import CustomUser
-from cart_item.models import CartItem
+from cart.models import Cart
 from favorites.models import Favorite
 from order.models import Order
 
@@ -11,7 +11,16 @@ from order.models import Order
 #---------------ORDER------------------------------------
 class OrderSerializer(serializers.ModelSerializer):
     """
+    Serializer for representing order details.
 
+    This serializer is used to convert the Order model instance
+    into JSON format and vice versa.
+
+    Attributes:
+        products (RelatedField): The list of products in the order.
+        user (RelatedField): The user who placed the order.
+        status (str): The current status of the order.
+        created_at (datetime): The date and time when the order was created.
     """
 
     class Meta:
@@ -27,7 +36,16 @@ class OrderSerializer(serializers.ModelSerializer):
 # Product------------------------------------------------------------------------
 class ProductSerializer(serializers.ModelSerializer):
     """
+    Serializer for representing the product on home page.
 
+    This serializer is used to convert the Product model instance
+    into JSON format and vice versa.
+    
+    Attributes:
+        id (int): The unique identifier of the product.
+        name (str): The name of the product.
+        image (str): The URL of the product image.
+        current_price (Decimal): The current price of the product.
     """
 
     class Meta:
@@ -191,7 +209,7 @@ class ProductInCartSerializer(serializers.ModelSerializer):
         )
 
 
-class CartItemSerializer(serializers.ModelSerializer):
+class CartSerializer(serializers.ModelSerializer):
     """
     Serializer for representing the cart item details.
 
@@ -205,7 +223,7 @@ class CartItemSerializer(serializers.ModelSerializer):
     product = ProductInCartSerializer(read_only=True)
 
     class Meta:
-        model = CartItem
+        model = Cart
         fields = (
             'user',
             'product',

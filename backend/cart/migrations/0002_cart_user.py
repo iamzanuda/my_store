@@ -8,15 +8,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cart_item', '0001_initial'),
+        ('cart', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='cartitem',
+            model_name='cart',
             name='user',
-            field=models.ForeignKey(default=1, help_text='Пользователь, к которому относится продукт', on_delete=django.db.models.deletion.CASCADE, related_name='cart_items', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
+            field=models.ForeignKey(default=1, help_text='Пользователь, к которому относится продукт', on_delete=django.db.models.deletion.CASCADE, related_name='cart', to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
             preserve_default=False,
         ),
     ]

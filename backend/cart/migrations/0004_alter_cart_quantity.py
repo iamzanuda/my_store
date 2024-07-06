@@ -7,12 +7,12 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cart_item', '0003_alter_cartitem_quantity'),
+        ('cart', '0003_alter_cart_quantity'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='cartitem',
+            model_name='cart',
             name='quantity',
             field=models.PositiveIntegerField(default=1, help_text='Количество данного продукта в корзине', validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(100)], verbose_name='Количество'),
         ),

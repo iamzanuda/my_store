@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 
     # Приложения
     'api.apps.ApiConfig',
-    'cart_item.apps.CartItemConfig',
+    'cart.apps.CartConfig',
     'favorites.apps.FavoritesConfig',
     'order.apps.OrderConfig',
     'product.apps.ProductConfig',

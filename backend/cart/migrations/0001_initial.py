@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='CartItem',
+            name='Cart',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.IntegerField(default=1, help_text='Количество данного продукта в корзине', verbose_name='Количество')),
-                ('product', models.ForeignKey(help_text='Продукт, добавленный в корзину', on_delete=django.db.models.deletion.CASCADE, related_name='cart_items', to='product.product', verbose_name='Продукт')),
+                ('product', models.ForeignKey(help_text='Продукт, добавленный в корзину', on_delete=django.db.models.deletion.CASCADE, related_name='cart', to='product.product', verbose_name='Продукт')),
             ],
         ),
     ]

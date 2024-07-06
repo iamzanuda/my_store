@@ -7,13 +7,13 @@ from rest_framework.response import Response
 from product.models import Product
 from favorites.models import Favorite
 from review.models import Review
-from cart_item.models import CartItem
+from cart.models import Cart
 
 from .pagination import ProductPagination
 
 from .serializers import (ProductCardSerializer, ProductSerializer,
                           ReviewViewingSerializer, ProductInCartSerializer,
-                          CartItemSerializer, FavoriteSerializer)
+                          CartSerializer, FavoriteSerializer)
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -147,7 +147,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         product = get_object_or_404(Product, id=pk)
         return self.add_or_remove(
             request,
-            CartItem,
+            Cart,
             product,
             'Product removed from the cart.'
         )
@@ -162,13 +162,14 @@ class ReviewViewingViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewViewingSerializer
 
 
-class CartItemViewSet(viewsets.ModelViewSet):
+class CartViewSet(viewsets.ModelViewSet):
     """
     View all items in cart.
     """
 
-    queryset = CartItem.objects.all()
-    serializer_class = CartItemSerializer
+    queryset = Cart.objects.all()
+    serializer_class = CartSerializer
+    pagination_class = ProductPagination
 
     # def create(self, request, *args, **kwargs):
     #     serializer = self.get_serializer(data=request.data)
@@ -192,3 +193,4 @@ class FavoriteViewSet(viewsets.ModelViewSet):
 
     queryset = Favorite.objects.all()
     serializer_class = FavoriteSerializer
+    pagination_class = ProductPagination
