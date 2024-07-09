@@ -14,6 +14,7 @@ This project is a simple e-commerce application built with Django. It includes f
 
 - Django
 - Django Rest Framework (DRF)
+- unittest
 - SQLite (default database, can be switched to PostgreSQL, MySQL, etc.)
 - HTML/CSS for templating
 - JavaScript (optional for frontend interactivity)
@@ -37,7 +38,7 @@ This project is a simple e-commerce application built with Django. It includes f
 
     ```bash
     python -m venv env
-    source env/bin/activate  # On Windows use `env\Scripts\activate`
+    source venv/bin/activate  # On Windows use ` source venv\Scripts\activate`
 
 3. Install the required packages:
 

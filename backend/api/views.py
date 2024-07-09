@@ -13,7 +13,7 @@ from .pagination import ProductPagination
 
 from .serializers import (ProductCardSerializer, ProductSerializer,
                           ReviewViewingSerializer, ProductInCartSerializer,
-                          CartSerializer, FavoriteSerializer)
+                          CartSerializer, FavoritesSerializer)
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
@@ -45,7 +45,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         Add or remove a product from a user's favorite list or cart.
         """
 
-        # We check the request type: if it is POST,
+        # Check the request type: if it is POST,
         # then we initialize the serializer and check its validity.
         if request.method == 'POST':
             serializer = ProductInCartSerializer(
@@ -85,7 +85,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # We check the request type: if it is DELETE,
+        # Check the request type: if it is DELETE,
         # then we check if the product is in the user’s
         # favorites list or cart.
         if request.method == 'DELETE':
@@ -171,26 +171,12 @@ class CartViewSet(viewsets.ModelViewSet):
     serializer_class = CartSerializer
     pagination_class = ProductPagination
 
-    # def create(self, request, *args, **kwargs):
-    #     serializer = self.get_serializer(data=request.data)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_create(serializer)
-    #     headers = self.get_success_headers(serializer.data)
-    #     return Response(
-    #         serializer.data, 
-    #         status=status.HTTP_201_CREATED, 
-    #         headers=headers
-    #     )
 
-    # def perform_create(self, serializer):
-    #     serializer.save()
-
-
-class FavoriteViewSet(viewsets.ModelViewSet):
+class FavoritesViewSet(viewsets.ModelViewSet):
     """
     View all items in favorites.
     """
 
     queryset = Favorite.objects.all()
-    serializer_class = FavoriteSerializer
+    serializer_class = FavoritesSerializer
     pagination_class = ProductPagination

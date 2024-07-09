@@ -1,13 +1,13 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .views import CartViewSet, ProductViewSet, FavoriteViewSet
+from .views import CartViewSet, ProductViewSet, FavoritesViewSet
 
 router = DefaultRouter()
 
-router.register(r'product', ProductViewSet, basename='product')
+router.register(r'products', ProductViewSet, basename='products')
 router.register(r'cart', CartViewSet, basename='cart')
-router.register(r'favorites', FavoriteViewSet, basename='favorites')
+router.register(r'favorites', FavoritesViewSet, basename='favorites')
 
 
 urlpatterns = [

@@ -147,7 +147,7 @@ class ProductCardSerializer(serializers.ModelSerializer):
 
 
 #----FAVORITE--------------------------------------------------
-class FavoriteSerializer(serializers.ModelSerializer):
+class FavoritesSerializer(serializers.ModelSerializer):
     """
     Serializer for representing a user's favorite products.
 
