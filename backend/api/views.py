@@ -171,6 +171,28 @@ class CartViewSet(viewsets.ModelViewSet):
     serializer_class = CartSerializer
     pagination_class = ProductPagination
 
+    def get_queryset(self):
+        """
+        Return only the cart items
+        that belong to the current user.
+        
+        Returns:
+            QuerySet: Queryset containing the current user's cart items.
+        """
+
+        return Cart.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        """
+        Automatically set the current user
+        when creating a new cart item.
+
+        Args:
+            serializer (CartSerializer): The cart item serializer.
+        """
+
+        serializer.save(user=self.request.user)
+
 
 class FavoritesViewSet(viewsets.ModelViewSet):
     """
@@ -180,3 +202,25 @@ class FavoritesViewSet(viewsets.ModelViewSet):
     queryset = Favorite.objects.all()
     serializer_class = FavoritesSerializer
     pagination_class = ProductPagination
+
+    def get_queryset(self):
+        """
+        Return only the favorite items
+        that belong to the current user.
+        
+        Returns:
+            QuerySet: Queryset containing the current user's favorites items.
+        """
+
+        return Favorite.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        """
+        Automatically set the current user
+        when creating a new favorite item.
+
+        Args:
+            serializer (FavoriteSerializer): The favorite item serializer.
+        """
+
+        serializer.save(user=self.request.user)

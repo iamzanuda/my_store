@@ -8,8 +8,13 @@ from django.urls import include, path
 urlpatterns = [
     path('api/', include('api.urls')),
     path('admin/', admin.site.urls),
-    path('auth/', include('djoser.urls')),
-    # path('auth/', include('djoser.urls.jwt')),
+
+    # Djoser создал набор необходимых эндпоинтов.
+    # базовые, для управления пользователями в Django:
+    path(r'auth/', include('djoser.urls')),
+
+    # JWT-эндпоинты, для управления JWT-токенами:
+    path(r'auth/', include('djoser.urls.jwt')),
 ]
 
 

@@ -1,4 +1,4 @@
-# from datetime import timedelta
+from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,9 +34,9 @@ INSTALLED_APPS = [
 
     # Django REST
     'rest_framework',
-    # 'corsheaders',
-    # 'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'djoser',
+    # 'corsheaders',
 ]
 
 # Кастомный юзер
@@ -126,9 +126,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -152,17 +152,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        # 'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated', 
     ],
 
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # ]
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
-# SIMPLE_JWT = {
-#     # Устанавливаем срок жизни токена
-#     'ACCESS_TOKEN_LIFETIME': timedelta(days=1000),
-#     'AUTH_HEADER_TYPES': ('Bearer',),
-# }
+
+SIMPLE_JWT = {
+    # Устанавливаем срок жизни токена
+   'ACCESS_TOKEN_LIFETIME': timedelta(days=100),
+   'AUTH_HEADER_TYPES': ('Bearer',),
+}
