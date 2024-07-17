@@ -3,6 +3,19 @@ from django.contrib import admin
 from .models import Product, Size, Color
 
 
+# Устанавливает заголовок, который будет отображаться
+# на всех страницах административной панели.
+admin.site.site_header = "my_store"
+
+# Устанавливает название, которое будет отображаться
+# в заголовке окна браузера.
+admin.site.site_title = "my_store_title"
+
+# Устанавливает заголовок, который будет отображаться
+# на главной странице административной панели.
+admin.site.index_title = "Добро пожаловать в администрирование my_store"
+
+
 @admin.register(Size)
 class SizeAdmin(admin.ModelAdmin):
     """
