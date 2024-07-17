@@ -1,4 +1,4 @@
-# Django my_store Project
+# Django my_store Project (В разработке)
 
 This project is a simple e-commerce application built with Django. It includes functionality for managing products, users, shopping carts, and favorites.
 
@@ -15,9 +15,8 @@ This project is a simple e-commerce application built with Django. It includes f
 - Django
 - Django Rest Framework (DRF)
 - unittest
-- SQLite (default database, can be switched to PostgreSQL, MySQL, etc.)
-- HTML/CSS for templating
-- JavaScript (optional for frontend interactivity)
+- PostgreSQL
+- React
 
 # Getting Started
 
